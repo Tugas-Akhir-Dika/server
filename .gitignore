@@ -39,6 +39,7 @@
 # SECRET
 files/secrets.config.json
 .env
+/bin
 
 # End of file
 
