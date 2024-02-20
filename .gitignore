@@ -1,0 +1,44 @@
+# Binaries
+*.exe
+*.out
+*.dll
+
+# Test binary, built with `go test -c`
+*.test
+
+# Ignoring the vendor directory if you're using modules
+/vendor/
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.cov
+
+# Dependency directories (remove the comment below to include it)
+# /vendor/
+
+# Compiled Object files, Static and Dynamic libs (remove the comment below to include it)
+# *.o
+# *.a
+# *.so
+# *.dll
+
+# Go specific
+*.log
+*.prof
+*.svg
+*.toml
+
+# VS Code directories
+.vscode/
+
+# Sublime Text directories
+.sublime-workspace
+
+# GoLand directories
+.idea/
+
+# SECRET
+files/secrets.config.json
+files/secrets.env
+
+# End of file
+
