@@ -27,7 +27,7 @@ func (h *Handler) Register(sdui fiber.Router, base fiber.Router) {
 }
 
 func (h *Handler) GetUserInformationHandler(c *fiber.Ctx) error {
-	isAuth := internal.GetAuthStatus(c)
+	isAuth := internal.IsAuth(c)
 	if !isAuth {
 		return c.Status(404).SendString("user not found")
 	}

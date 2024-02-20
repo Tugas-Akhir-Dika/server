@@ -18,7 +18,7 @@ func (h *Handler) GetListOfItemInterfaceHandler(ctx *fiber.Ctx) error {
 			Body:   h.ui.CreateNotFoundInterface(),
 		})
 	}
-	isAuth := internal.GetAuthStatus(ctx)
+	isAuth := internal.IsAuth(ctx)
 	header := h.ui.CreateHeader(isAuth)
 	body := h.ui.CreateItemCardInterface(items)
 	return ctx.JSON(dto.SDUIResponseDTO{
@@ -42,7 +42,7 @@ func (h *Handler) GetItemDetailInterfaceHandler(ctx *fiber.Ctx) error {
 		})
 	}
 
-	isAuth := internal.GetAuthStatus(ctx)
+	isAuth := internal.IsAuth(ctx)
 	header := h.ui.CreateHeader(isAuth)
 	body := h.ui.CreateItemDetailInterface(*item)
 	return ctx.JSON(dto.SDUIResponseDTO{
