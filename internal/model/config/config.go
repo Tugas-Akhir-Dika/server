@@ -2,6 +2,7 @@ package config
 
 import (
 	"encoding/json"
+	"github.com/joho/godotenv"
 	"io"
 	"os"
 )
@@ -10,6 +11,23 @@ type Config struct {
 	App      string `json:"app"`
 	Port     string `json:"port"`
 	Database string `json:"database"`
+}
+
+func NewFromEnv() (*Config, error) {
+	err := godotenv.Load(".env")
+	if err != nil {
+		return nil, err
+	}
+
+	app := os.Getenv("APP")
+	port := os.Getenv("PORT")
+	database := os.Getenv("DATABASE")
+
+	return &Config{
+		App:      app,
+		Port:     port,
+		Database: database,
+	}, nil
 }
 
 func New() (*Config, error) {

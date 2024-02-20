@@ -38,7 +38,7 @@
 
 # SECRET
 files/secrets.config.json
-files/secrets.env
+.env
 
 # End of file
 

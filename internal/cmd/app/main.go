@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	cfg, err := config.New()
+	cfg, err := config.NewFromEnv()
 	if err != nil {
 		log.Fatal(err)
 		return
