@@ -2,7 +2,6 @@ package config
 
 import (
 	"encoding/json"
-	"github.com/joho/godotenv"
 	"io"
 	"os"
 )
@@ -14,10 +13,10 @@ type Config struct {
 }
 
 func NewFromEnv() (*Config, error) {
-	err := godotenv.Load(".env")
-	if err != nil {
-		return nil, err
-	}
+	//err := godotenv.Load(".env")
+	//if err != nil {
+	//	return nil, err
+	//}
 
 	app := os.Getenv("APP")
 	port := os.Getenv("PORT")
