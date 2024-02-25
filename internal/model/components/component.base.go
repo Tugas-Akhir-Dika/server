@@ -46,8 +46,9 @@ const EXIT_BTN = "exit_btn"
 const OPEN_PROFILE_BTN = "open_profile_btn"
 
 type ButtonComponentInfo struct {
-	Uid   string    `json:"uid"`
-	Child Component `json:"child"`
+	Uid     string    `json:"uid"`
+	Child   Component `json:"child"`
+	IsClear bool      `json:"is_clear"`
 }
 
 type NavigationComponentInfo struct {
@@ -65,7 +66,6 @@ type CircularImageComponentInfo struct {
 	Uid      string  `json:"uid"`
 	ImageURL string  `json:"image_url"`
 	Size     float64 `json:"size"`
-	IsClear  bool    `json:"is_clear"`
 }
 
 const (
