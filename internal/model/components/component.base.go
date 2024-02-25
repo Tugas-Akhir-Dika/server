@@ -43,6 +43,7 @@ type SpacerComponentInfo struct {
 const SIGN_IN_BTN = "sign_in_btn"
 const SIGN_OUT_BTN = "sign_out_btn"
 const EXIT_BTN = "exit_btn"
+const OPEN_PROFILE_BTN = "open_profile_btn"
 
 type ButtonComponentInfo struct {
 	Uid   string    `json:"uid"`

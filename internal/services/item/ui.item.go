@@ -133,7 +133,22 @@ func (ui *UserInterface) CreateNotFoundInterface() []components.Component {
 
 func (ui *UserInterface) CreateHeader(isAuth bool) []components.Component {
 	if !isAuth {
-		return make([]components.Component, 0)
+		return []components.Component{
+			{
+				Type: components.BUTTON_TYPE,
+				Information: components.ButtonComponentInfo{
+					Uid: components.OPEN_PROFILE_BTN,
+					Child: components.Component{
+						Type: components.CIRCULAR_IMG_TYPE,
+						Information: components.CircularImageComponentInfo{
+							Uid:      uuid.NewString(),
+							ImageURL: "https://pbs.twimg.com/media/GGyPlsyW0AAhnbH?format=jpg",
+							Size:     34,
+						},
+					},
+				},
+			},
+		}
 	}
 	return []components.Component{
 		{
