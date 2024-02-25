@@ -28,7 +28,7 @@ jobs:
       - name: Setup env
         uses: nowactions/envsubst@v1
         env:
-          ENV: ${{ secrets.APP_SECRET }}
+          CONFIG_SECRETS: ${{ secrets.APP_SECRET }}
         with:
           input: files/secrets.config.template
           output: files/secrets.config.json
