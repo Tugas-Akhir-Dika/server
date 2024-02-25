@@ -50,3 +50,30 @@ func New() (*Config, error) {
 	err = json.Unmarshal(fileData, &config)
 	return &config, err
 }
+
+type LocalImage struct {
+	Id  string `json:"id"`
+	Url string `json:"url"`
+}
+
+func LoadImages() ([]LocalImage, error) {
+	filePath := "./files/images.json"
+	var imgs []LocalImage
+
+	// Open the JSON file
+	file, err := os.Open(filePath)
+	if err != nil {
+		return nil, err
+	}
+	defer file.Close()
+
+	// Read the file contents
+	fileData, err := io.ReadAll(file)
+	if err != nil {
+		return nil, err
+	}
+
+	// Parse the JSON data into the Config struct
+	err = json.Unmarshal(fileData, &imgs)
+	return imgs, err
+}

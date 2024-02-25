@@ -13,6 +13,9 @@ const (
 	STACK_HORIZONTAL  = "horizontal"
 )
 
+var WHITE_COLOR = "#FFFFFF"
+var BLUE_COLOR = "#0000FF"
+
 type Component struct {
 	Type        string      `json:"type"`
 	Information interface{} `json:"info"`
@@ -25,9 +28,11 @@ type StackComponentInfo struct {
 }
 
 type TextComponentInfo struct {
-	Uid     string  `json:"uid"`
-	Message string  `json:"message"`
-	Size    float64 `json:"size"`
+	Uid      string   `json:"uid"`
+	Message  string   `json:"message"`
+	Size     float64  `json:"size"`
+	Alpha    *float32 `json:"alpha"`
+	ColorHex *string  `json:"color_hex"`
 }
 
 type SpacerComponentInfo struct {
@@ -36,6 +41,8 @@ type SpacerComponentInfo struct {
 }
 
 const SIGN_IN_BTN = "sign_in_btn"
+const SIGN_OUT_BTN = "sign_out_btn"
+const EXIT_BTN = "exit_btn"
 
 type ButtonComponentInfo struct {
 	Uid   string    `json:"uid"`

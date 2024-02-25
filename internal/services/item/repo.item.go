@@ -18,8 +18,10 @@ func NewRepo(db *sqlx.DB) (*Repository, error) {
 	}, nil
 }
 
-func (r *Repository) AddItem() error {
-	return nil
+func (r *Repository) AddItem(ctx context.Context, item entity.ItemEntity) error {
+	query := "INSERT INTO items(title, price, description, category, image, rate, count) values ($1, $2, $3, $4, $5, $6, $7)"
+	_, err := r.db.ExecContext(ctx, query, item.Title, item.Price, item.Description, item.Category, item.Image, item.Rate, item.Count)
+	return err
 }
 
 func (r *Repository) GetItemById(ctx context.Context, id int64) (*entity.ItemEntity, error) {
