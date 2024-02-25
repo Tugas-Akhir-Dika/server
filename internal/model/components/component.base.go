@@ -65,6 +65,7 @@ type CircularImageComponentInfo struct {
 	Uid      string  `json:"uid"`
 	ImageURL string  `json:"image_url"`
 	Size     float64 `json:"size"`
+	IsClear  bool    `json:"is_clear"`
 }
 
 const (

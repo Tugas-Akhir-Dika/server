@@ -142,6 +142,7 @@ func (ui *UserInterface) CreateHeader(isAuth bool) []components.Component {
 						Type: components.CIRCULAR_IMG_TYPE,
 						Information: components.CircularImageComponentInfo{
 							Uid:      uuid.NewString(),
+							IsClear:  true,
 							ImageURL: "https://pbs.twimg.com/media/GGyPlsyW0AAhnbH?format=jpg",
 							Size:     34,
 						},
