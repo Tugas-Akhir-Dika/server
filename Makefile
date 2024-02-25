@@ -3,4 +3,4 @@ run-app:
 build-app:
 	go build -o bin/app ./internal/cmd/app/*.go
 run-script:
-	go run ./internal/script/app/*.go
+	go run ./internal/cmd/script/*.go

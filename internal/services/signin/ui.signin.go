@@ -52,9 +52,10 @@ func (ui *UserInterface) UserNotFoundInterface() []components.Component {
 				Child: components.Component{
 					Type: components.TEXT_TYPE,
 					Information: components.TextComponentInfo{
-						Uid:     uuid.NewString(),
-						Message: "Sign In",
-						Size:    20,
+						Uid:      uuid.NewString(),
+						Message:  "Sign In",
+						Size:     20,
+						ColorHex: &components.WHITE_COLOR,
 					},
 				},
 			},
@@ -70,14 +71,63 @@ func (ui *UserInterface) UserNotFoundInterface() []components.Component {
 }
 
 func (ui *UserInterface) UserFoundInterface(isAuth bool) []components.Component {
+	l := 200.0
 	compos := make([]components.Component, 0)
 	if !isAuth {
 		return ui.UserNotFoundInterface()
 	}
-	compos = []components.Component{}
+	compos = append(compos, components.Component{
+		Type: components.STACK_TYPE,
+		Information: components.StackComponentInfo{
+			Uid:  "d89yf389",
+			Type: components.STACK_VERTICAL,
+			Children: []components.Component{
+				{
+					Type: components.SPACER_TYPE,
+					Information: components.SpacerComponentInfo{
+						Uid:    "309dedc9ehdjewhc",
+						Length: &l,
+					},
+				},
+				{
+					Type: components.BUTTON_TYPE,
+					Information: components.ButtonComponentInfo{
+						Uid: components.SIGN_OUT_BTN,
+						Child: components.Component{
+							Type: components.TEXT_TYPE,
+							Information: components.TextComponentInfo{
+								Uid:      uuid.NewString(),
+								Message:  "Sign Out",
+								Size:     20,
+								ColorHex: &components.WHITE_COLOR,
+							},
+						},
+					},
+				},
+			},
+		},
+	})
 	return compos
 }
 
-func (ui *UserInterface) Header() []components.Component {
-	return make([]components.Component, 0)
+func (ui *UserInterface) Header(isAuth bool) []components.Component {
+	if !isAuth {
+		return make([]components.Component, 0)
+	}
+	return []components.Component{
+		{
+			Type: components.BUTTON_TYPE,
+			Information: components.ButtonComponentInfo{
+				Uid: components.EXIT_BTN,
+				Child: components.Component{
+					Type: components.TEXT_TYPE,
+					Information: components.TextComponentInfo{
+						Uid:     uuid.NewString(),
+						Message: "X",
+						Size:    25,
+					},
+				},
+			},
+		},
+	}
 }

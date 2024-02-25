@@ -27,7 +27,7 @@ func (h *Handler) Register(sdui fiber.Router, base fiber.Router) {
 }
 
 func (h *Handler) GetUserInformationHandler(c *fiber.Ctx) error {
-	isAuth := internal.GetAuthStatus(c)
+	isAuth := internal.IsAuth(c)
 	if !isAuth {
 		return c.Status(404).SendString("user not found")
 	}
@@ -50,10 +50,15 @@ func (h *Handler) SignInUserHandler(c *fiber.Ctx) error {
 // SDUI
 
 func (h *Handler) GetUserInformationInterfaceHandler(ctx *fiber.Ctx) error {
-	header := h.ui.Header()
-	body := h.ui.UserFoundInterface(true)
+	title := "Sign In"
+	isAuth := internal.IsAuth(ctx)
+	header := h.ui.Header(isAuth)
+	body := h.ui.UserFoundInterface(isAuth)
+	if isAuth {
+		title = "Profile"
+	}
 	return ctx.JSON(dto.SDUIResponseDTO{
-		Title:  "Zahrir",
+		Title:  title,
 		Header: header,
 		Body:   body,
 	})
