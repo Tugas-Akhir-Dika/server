@@ -36,11 +36,10 @@ jobs:
       - name: Check .env file
         run: cat files/secrets.config.json
 
-      - name: Setup GCP
-        uses: google-github-actions/setup-gcloud@v0
+      - name: Auth GCP
+        uses: google-github-actions/auth@v1
         with:
-          project_id: ${{ secrets.GCP_PROJECT_ID }}
-          service_account_key: ${{ secrets.SAJSON }}
+          credentials_json: ${{ secrets.SAJSON }}
 
       - name: Configure Docker
         run: gcloud auth configure-docker --quiet
@@ -54,11 +53,6 @@ jobs:
             docker build . -t $IMAGE_NAME/be-staging:${GCR_TAG}
             docker push $IMAGE_NAME/be-staging:${GCR_TAG}
           fi
-
-      - name: Auth GCP
-        uses: google-github-actions/auth@v1
-        with:
-          credentials_json: ${{ secrets.SAJSON }}
 
       - name: Deploy to Cloud Run
         run: |
