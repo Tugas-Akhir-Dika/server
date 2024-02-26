@@ -20,7 +20,11 @@ func (h *Handler) GetListOfItemInterfaceHandler(ctx *fiber.Ctx) error {
 	}
 	isAuth := internal.IsAuth(ctx)
 	header := h.ui.CreateHeader(isAuth)
-	body := h.ui.CreateItemCardInterface(items)
+	body := h.ui.CreateItemListChildInterface(items)
+	if isAuth {
+		nt, _ := h.repo.GetItems(ctx.Context(), 1, 5)
+		body = append(h.ui.CreateSuggestionCarouselInterface(nt), body...)
+	}
 	return ctx.JSON(dto.SDUIResponseDTO{
 		Title:  "Home",
 		Header: header,

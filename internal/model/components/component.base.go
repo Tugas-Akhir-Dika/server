@@ -11,6 +11,7 @@ const (
 	NORMAL_IMG_TYPE   = "normal_img"
 	STACK_VERTICAL    = "vertical"
 	STACK_HORIZONTAL  = "horizontal"
+	CAROUSEL_TYPE     = "carousel"
 )
 
 var WHITE_COLOR = "#FFFFFF"
@@ -19,6 +20,17 @@ var BLUE_COLOR = "#0000FF"
 type Component struct {
 	Type        string      `json:"type"`
 	Information interface{} `json:"info"`
+}
+
+type CarouselComponentInfo struct {
+	Uid        string               `json:"uid"`
+	Properties []CarouselProperties `json:"properties"`
+}
+
+type CarouselProperties struct {
+	Title    string `json:"title"`
+	Image    string `json:"image"`
+	SubTitle string `json:"sub_title"`
 }
 
 type StackComponentInfo struct {

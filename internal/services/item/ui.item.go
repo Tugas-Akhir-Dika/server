@@ -14,7 +14,7 @@ func NewUserInterface() *UserInterface {
 	return &UserInterface{}
 }
 
-func (ui *UserInterface) CreateItemCardInterface(items []entity.ItemEntity) []components.Component {
+func (ui *UserInterface) CreateItemListChildInterface(items []entity.ItemEntity) []components.Component {
 	compos := make([]components.Component, 0)
 	for _, item := range items {
 		compos = append(compos, components.Component{
@@ -132,33 +132,42 @@ func (ui *UserInterface) CreateNotFoundInterface() []components.Component {
 }
 
 func (ui *UserInterface) CreateHeader(isAuth bool) []components.Component {
-	if !isAuth {
-		return []components.Component{
-			{
-				Type: components.BUTTON_TYPE,
-				Information: components.ButtonComponentInfo{
-					Uid:     components.OPEN_PROFILE_BTN,
-					IsClear: true,
-					Child: components.Component{
-						Type: components.CIRCULAR_IMG_TYPE,
-						Information: components.CircularImageComponentInfo{
-							Uid:      uuid.NewString(),
-							ImageURL: "https://pbs.twimg.com/media/GGyPlsyW0AAhnbH?format=jpg",
-							Size:     34,
-						},
+	return []components.Component{
+		{
+			Type: components.BUTTON_TYPE,
+			Information: components.ButtonComponentInfo{
+				Uid:     components.OPEN_PROFILE_BTN,
+				IsClear: true,
+				Child: components.Component{
+					Type: components.CIRCULAR_IMG_TYPE,
+					Information: components.CircularImageComponentInfo{
+						Uid:      uuid.NewString(),
+						ImageURL: "https://pbs.twimg.com/media/GGyPlsyW0AAhnbH?format=jpg",
+						Size:     34,
 					},
 				},
 			},
-		}
-	}
-	return []components.Component{
-		{
-			Type: components.CIRCULAR_IMG_TYPE,
-			Information: components.CircularImageComponentInfo{
-				Uid:      uuid.NewString(),
-				ImageURL: "https://pbs.twimg.com/media/GGyPlsyW0AAhnbH?format=jpg",
-				Size:     34,
-			},
 		},
 	}
+}
+
+func (ui *UserInterface) CreateSuggestionCarouselInterface(items []entity.ItemEntity) []components.Component {
+	compos := make([]components.Component, 0)
+	props := make([]components.CarouselProperties, 0)
+	for _, item := range items {
+		props = append(props, components.CarouselProperties{
+			Title:    item.Title,
+			Image:    item.Image,
+			SubTitle: item.Category,
+		})
+	}
+	carousel := components.Component{
+		Type: components.CAROUSEL_TYPE,
+		Information: components.CarouselComponentInfo{
+			Uid:        "",
+			Properties: props,
+		},
+	}
+	compos = append(compos, carousel)
+	return compos
 }
