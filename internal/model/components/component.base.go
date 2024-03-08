@@ -8,7 +8,7 @@ const (
 	BUTTON_TYPE       = "button"
 	NAVIGATION_TYPE   = "navigation"
 	CIRCULAR_IMG_TYPE = "circular_img"
-	NORMAL_IMG_TYPE   = "normal_img"
+	REGULAR_IMG_TYPE  = "reg_img"
 	STACK_VERTICAL    = "vertical"
 	STACK_HORIZONTAL  = "horizontal"
 	CAROUSEL_TYPE     = "carousel"
@@ -69,9 +69,10 @@ type NavigationComponentInfo struct {
 	Child     Component `json:"child"`
 }
 
-type ImageComponentInfo struct {
-	Uid      string `json:"uid"`
-	ImageURL string `json:"image_url"`
+type RegularImageComponentInfo struct {
+	Uid      string  `json:"uid"`
+	ImageURL string  `json:"image_url"`
+	Height   float64 `json:"height"`
 }
 
 type CircularImageComponentInfo struct {
