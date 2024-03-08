@@ -92,6 +92,7 @@ func (ui *UserInterface) CreateItemListChildInterface(items []entity.ItemEntity)
 
 func (ui *UserInterface) CreateItemDetailInterface(item entity.ItemEntity) []components.Component {
 	spl := 3.0
+	splTwo := 40.0
 	return []components.Component{
 		{
 			Type: components.SPACER_TYPE,
@@ -112,7 +113,7 @@ func (ui *UserInterface) CreateItemDetailInterface(item entity.ItemEntity) []com
 			Type: components.STACK_TYPE,
 			Information: components.StackComponentInfo{
 				Uid:  uuid.NewString(),
-				Type: components.STACK_HORIZONTAL,
+				Type: components.STACK_VERTICAL,
 				Children: []components.Component{
 					{
 						Type: components.TEXT_TYPE,
@@ -124,22 +125,6 @@ func (ui *UserInterface) CreateItemDetailInterface(item entity.ItemEntity) []com
 							ColorHex: nil,
 						},
 					},
-					{
-						Type: components.SPACER_TYPE,
-						Information: components.SpacerComponentInfo{
-							Uid:    uuid.NewString(),
-							Length: nil,
-						},
-					},
-				},
-			},
-		},
-		{
-			Type: components.STACK_TYPE,
-			Information: components.StackComponentInfo{
-				Uid:  uuid.NewString(),
-				Type: components.STACK_HORIZONTAL,
-				Children: []components.Component{
 					{
 						Type: components.TEXT_TYPE,
 						Information: components.TextComponentInfo{
@@ -154,18 +139,9 @@ func (ui *UserInterface) CreateItemDetailInterface(item entity.ItemEntity) []com
 						Type: components.SPACER_TYPE,
 						Information: components.SpacerComponentInfo{
 							Uid:    uuid.NewString(),
-							Length: nil,
+							Length: &splTwo,
 						},
 					},
-				},
-			},
-		},
-		{
-			Type: components.STACK_TYPE,
-			Information: components.StackComponentInfo{
-				Uid:  uuid.NewString(),
-				Type: components.STACK_HORIZONTAL,
-				Children: []components.Component{
 					{
 						Type: components.TEXT_TYPE,
 						Information: components.TextComponentInfo{
@@ -174,13 +150,6 @@ func (ui *UserInterface) CreateItemDetailInterface(item entity.ItemEntity) []com
 							Size:     12,
 							Alpha:    nil,
 							ColorHex: nil,
-						},
-					},
-					{
-						Type: components.SPACER_TYPE,
-						Information: components.SpacerComponentInfo{
-							Uid:    uuid.NewString(),
-							Length: nil,
 						},
 					},
 				},
