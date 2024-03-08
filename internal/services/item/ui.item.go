@@ -91,26 +91,97 @@ func (ui *UserInterface) CreateItemListChildInterface(items []entity.ItemEntity)
 }
 
 func (ui *UserInterface) CreateItemDetailInterface(item entity.ItemEntity) []components.Component {
+	spl := 3.0
 	return []components.Component{
 		{
-			Type: components.TEXT_TYPE,
-			Information: components.TextComponentInfo{
-				Uid:     uuid.NewString(),
-				Message: item.Title,
-				Size:    10,
+			Type: components.SPACER_TYPE,
+			Information: components.SpacerComponentInfo{
+				Uid:    uuid.NewString(),
+				Length: &spl,
 			},
 		},
 		{
-			Type: components.NAVIGATION_TYPE,
-			Information: components.NavigationComponentInfo{
-				Uid:       uuid.NewString(),
-				TargetURL: "/item/2",
-				Child: components.Component{
-					Type: components.TEXT_TYPE,
-					Information: components.TextComponentInfo{
-						Uid:     uuid.NewString(),
-						Message: item.Category,
-						Size:    10,
+			Type: components.REGULAR_IMG_TYPE,
+			Information: components.RegularImageComponentInfo{
+				Uid:      uuid.NewString(),
+				ImageURL: item.Image,
+				Height:   300,
+			},
+		},
+		{
+			Type: components.STACK_TYPE,
+			Information: components.StackComponentInfo{
+				Uid:  uuid.NewString(),
+				Type: components.STACK_HORIZONTAL,
+				Children: []components.Component{
+					{
+						Type: components.TEXT_TYPE,
+						Information: components.TextComponentInfo{
+							Uid:      uuid.NewString(),
+							Message:  item.Title,
+							Size:     30,
+							Alpha:    nil,
+							ColorHex: nil,
+						},
+					},
+					{
+						Type: components.SPACER_TYPE,
+						Information: components.SpacerComponentInfo{
+							Uid:    uuid.NewString(),
+							Length: nil,
+						},
+					},
+				},
+			},
+		},
+		{
+			Type: components.STACK_TYPE,
+			Information: components.StackComponentInfo{
+				Uid:  uuid.NewString(),
+				Type: components.STACK_HORIZONTAL,
+				Children: []components.Component{
+					{
+						Type: components.TEXT_TYPE,
+						Information: components.TextComponentInfo{
+							Uid:      uuid.NewString(),
+							Message:  item.Category,
+							Size:     10,
+							Alpha:    nil,
+							ColorHex: nil,
+						},
+					},
+					{
+						Type: components.SPACER_TYPE,
+						Information: components.SpacerComponentInfo{
+							Uid:    uuid.NewString(),
+							Length: nil,
+						},
+					},
+				},
+			},
+		},
+		{
+			Type: components.STACK_TYPE,
+			Information: components.StackComponentInfo{
+				Uid:  uuid.NewString(),
+				Type: components.STACK_HORIZONTAL,
+				Children: []components.Component{
+					{
+						Type: components.TEXT_TYPE,
+						Information: components.TextComponentInfo{
+							Uid:      uuid.NewString(),
+							Message:  item.Description,
+							Size:     12,
+							Alpha:    nil,
+							ColorHex: nil,
+						},
+					},
+					{
+						Type: components.SPACER_TYPE,
+						Information: components.SpacerComponentInfo{
+							Uid:    uuid.NewString(),
+							Length: nil,
+						},
 					},
 				},
 			},
