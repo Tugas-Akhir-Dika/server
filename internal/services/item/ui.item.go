@@ -172,6 +172,25 @@ func (ui *UserInterface) CreateNotFoundInterface() []components.Component {
 }
 
 func (ui *UserInterface) CreateHeader(isAuth bool) []components.Component {
+	if isAuth {
+		return []components.Component{
+			{
+				Type: components.BUTTON_TYPE,
+				Information: components.ButtonComponentInfo{
+					Uid:     components.OPEN_PROFILE_BTN,
+					IsClear: true,
+					Child: components.Component{
+						Type: components.CIRCULAR_IMG_TYPE,
+						Information: components.CircularImageComponentInfo{
+							Uid:      uuid.NewString(),
+							ImageURL: "https://t4.ftcdn.net/jpg/04/00/24/31/360_F_400243185_BOxON3h9avMUX10RsDkt3pJ8iQx72kS3.jpg",
+							Size:     34,
+						},
+					},
+				},
+			},
+		}
+	}
 	return []components.Component{
 		{
 			Type: components.BUTTON_TYPE,
