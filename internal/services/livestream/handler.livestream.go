@@ -44,5 +44,11 @@ func (h *Handler) GetMembersHandler(ctx *fiber.Ctx) error {
 }
 
 func (h *Handler) GetMembersUIHandler(ctx *fiber.Ctx) error {
-	return nil
+	members := h.repo.GetMembers()
+	body := h.ui.CreateMemberListChildInterface(members)
+	return ctx.JSON(dto.SDUIResponseDTO{
+		Title:  "Members",
+		Header: nil,
+		Body:   body,
+	})
 }
