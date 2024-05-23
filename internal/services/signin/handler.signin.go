@@ -22,6 +22,7 @@ func NewHandler(ui *UserInterface, repo *Repository) *Handler {
 func (h *Handler) Register(sdui fiber.Router, base fiber.Router) {
 	sdui.Post("/signin", h.SignInUserInterfaceHandler)
 	sdui.Get("/profile", h.GetUserInformationInterfaceHandler)
+
 	base.Post("/signin", h.SignInUserHandler)
 	base.Get("/profile", h.GetUserInformationHandler)
 }
