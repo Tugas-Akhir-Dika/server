@@ -17,6 +17,11 @@ func main() {
 		log.Fatal(err)
 		return
 	}
+	members, err := entity.LoadMembers()
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
 	rsc, err := internal.NewRsc(cfg)
 	if err != nil {
 		log.Fatal(err)
@@ -55,14 +60,7 @@ func main() {
 	signInHandler.Register(sduiRoute, baseRoute)
 
 	liveStreamUI := livestream.NewUserInterface()
-	liveStreamRepo := livestream.NewRepository([]entity.MemberEntity{
-		{
-			Id:       1,
-			Name:     "Callista Alifia",
-			SubTitle: "Member",
-			PhotoURL: "https://ucarecdn.com/16f47f20-4153-4942-bdd9-b84bc54db6e4/",
-		},
-	})
+	liveStreamRepo := livestream.NewRepository(members)
 	liveStreamHandler := livestream.NewHandler(liveStreamRepo, liveStreamUI)
 	liveStreamHandler.Register(sduiRoute, baseRoute)
 

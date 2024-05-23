@@ -64,3 +64,12 @@ func (r *Repository) GetMemberLiveStreamURL(roomId int64) (string, error) {
 	}
 	return streamingEntity.StreamingUrlList[0].Url, nil
 }
+
+func (r *Repository) GetMemberDetail(roomId int64) (*entity.MemberEntity, error) {
+	for _, member := range r.members {
+		if member.Id == roomId {
+			return &member, nil
+		}
+	}
+	return nil, errors.New("member is not available at the moment")
+}
