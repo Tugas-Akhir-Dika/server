@@ -3,7 +3,9 @@ package main
 import (
 	"SDUI_Server/internal"
 	"SDUI_Server/internal/model/config"
+	"SDUI_Server/internal/model/entity"
 	"SDUI_Server/internal/services/item"
+	"SDUI_Server/internal/services/livestream"
 	"SDUI_Server/internal/services/signin"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/log"
@@ -51,6 +53,18 @@ func main() {
 	signInUI := signin.NewUserInterface()
 	signInHandler := signin.NewHandler(signInUI, signInRepo)
 	signInHandler.Register(sduiRoute, baseRoute)
+
+	liveStreamUI := livestream.NewUserInterface()
+	liveStreamRepo := livestream.NewRepository([]entity.MemberEntity{
+		{
+			Id:       1,
+			Name:     "Callista Alifia",
+			SubTitle: "Member",
+			PhotoURL: "https://ucarecdn.com/16f47f20-4153-4942-bdd9-b84bc54db6e4/",
+		},
+	})
+	liveStreamHandler := livestream.NewHandler(liveStreamRepo, liveStreamUI)
+	liveStreamHandler.Register(sduiRoute, baseRoute)
 
 	app.Listen(cfg.Port)
 }
