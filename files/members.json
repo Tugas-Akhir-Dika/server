@@ -1,7 +1,7 @@
 [
   {
-    "id": 1,
-    "name": "Callie",
+    "id": 461463,
+    "name": "Cynthia",
     "subTitle": "JKT48 Member",
     "photoUrl": "https://ucarecdn.com/73337191-c752-4e26-b752-a2ce64990746/"
   },
@@ -10,5 +10,40 @@
     "name": "Jurie Yamamoto",
     "subTitle": "AKB48 Member",
     "photoUrl": "https://pbs.twimg.com/media/GORGo1kbQAI4b-R?format=jpg&name=small"
-  }
+  },
+  {
+    "id": 400717,
+    "name": "Lynn",
+    "subTitle": "JKT48 Member",
+    "photoUrl": "https://pbs.twimg.com/media/GKuBRSMasAAl1we?format=jpg&name=large"
+  },
+  {
+    "id": 461458,
+    "name": "Chelsea",
+    "subTitle": "JKT48 Member",
+    "photoUrl": "https://ucarecdn.com/4428d1c5-edfa-498d-a36c-2a9c4b9d59f3/"
+  },
+  {
+    "id": 461478,
+    "name": "Gracie",
+    "subTitle": "JKT48 Member",
+    "photoUrl": "https://pbs.twimg.com/media/GNXIcV2bIAEhk-s?format=jpg&name=large"
+  },
+  {
+    "id": 461479,
+    "name": "Greesel",
+    "subTitle": "JKT48 Member",
+    "photoUrl": "https://pbs.twimg.com/media/GK-fqq0a0AA-bYI?format=jpg&name=large"
+  },
+  {
+    "id": 461476,
+    "name": "Gendis",
+    "subTitle": "JKT48 Member",
+    "photoUrl": "https://pbs.twimg.com/media/GLlWmS2bsAAmGgt?format=jpg&name=large"
+  },{
+  "id": 461481,
+  "name": "Michie",
+  "subTitle": "JKT48 Member",
+  "photoUrl": "https://pbs.twimg.com/media/GNMfXvpbUAAEKAg?format=jpg&name=medium"
+}
 ]
