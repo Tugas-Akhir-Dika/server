@@ -177,6 +177,21 @@ func (ui *UserInterface) CreateHeader(isAuth bool) []components.Component {
 			{
 				Type: components.BUTTON_TYPE,
 				Information: components.ButtonComponentInfo{
+					Uid: components.OPEN_LIVE_BTN,
+					Child: components.Component{
+						Type: components.TEXT_TYPE,
+						Information: components.TextComponentInfo{
+							Uid:     uuid.NewString(),
+							Message: "Live",
+							Size:    15,
+						},
+					},
+					IsClear: true,
+				},
+			},
+			{
+				Type: components.BUTTON_TYPE,
+				Information: components.ButtonComponentInfo{
 					Uid:     components.OPEN_PROFILE_BTN,
 					IsClear: true,
 					Child: components.Component{
@@ -192,6 +207,21 @@ func (ui *UserInterface) CreateHeader(isAuth bool) []components.Component {
 		}
 	}
 	return []components.Component{
+		{
+			Type: components.BUTTON_TYPE,
+			Information: components.ButtonComponentInfo{
+				Uid: components.OPEN_LIVE_BTN,
+				Child: components.Component{
+					Type: components.TEXT_TYPE,
+					Information: components.TextComponentInfo{
+						Uid:     uuid.NewString(),
+						Message: "Live",
+						Size:    15,
+					},
+				},
+				IsClear: true,
+			},
+		},
 		{
 			Type: components.BUTTON_TYPE,
 			Information: components.ButtonComponentInfo{
