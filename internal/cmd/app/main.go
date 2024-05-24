@@ -3,7 +3,6 @@ package main
 import (
 	"SDUI_Server/internal"
 	"SDUI_Server/internal/model/config"
-	"SDUI_Server/internal/model/entity"
 	"SDUI_Server/internal/services/item"
 	"SDUI_Server/internal/services/livestream"
 	"SDUI_Server/internal/services/signin"
@@ -13,11 +12,6 @@ import (
 
 func main() {
 	cfg, err := config.New()
-	if err != nil {
-		log.Fatal(err)
-		return
-	}
-	members, err := entity.LoadMembers()
 	if err != nil {
 		log.Fatal(err)
 		return
@@ -60,7 +54,7 @@ func main() {
 	signInHandler.Register(sduiRoute, baseRoute)
 
 	liveStreamUI := livestream.NewUserInterface()
-	liveStreamRepo := livestream.NewRepository(members)
+	liveStreamRepo := livestream.NewRepository(rsc.Db)
 	liveStreamHandler := livestream.NewHandler(liveStreamRepo, liveStreamUI)
 	liveStreamHandler.Register(sduiRoute, baseRoute)
 

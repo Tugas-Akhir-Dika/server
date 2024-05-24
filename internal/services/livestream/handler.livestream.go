@@ -40,12 +40,27 @@ func (h *Handler) GetMemberLiveStreamURL(ctx *fiber.Ctx) error {
 }
 
 func (h *Handler) GetMembersHandler(ctx *fiber.Ctx) error {
-	members := h.repo.GetMembers()
-	return ctx.JSON(members)
+	members, err := h.repo.GetMembers()
+	if err != nil {
+		return ctx.Status(500).SendString(err.Error())
+	}
+	res := make([]dto.MemberResponseDTO, 0)
+	for _, mem := range members {
+		res = append(res, dto.MemberResponseDTO{
+			Id:       mem.Id,
+			Name:     mem.Name,
+			SubTitle: mem.SubTitle,
+			PhotoURL: mem.PhotoURL,
+		})
+	}
+	return ctx.JSON(res)
 }
 
 func (h *Handler) GetMembersUIHandler(ctx *fiber.Ctx) error {
-	members := h.repo.GetMembers()
+	members, err := h.repo.GetMembers()
+	if err != nil {
+		return ctx.Status(500).SendString(err.Error())
+	}
 	body := h.ui.CreateMemberListChildInterface(members)
 	return ctx.JSON(dto.SDUIResponseDTO{
 		Title:  "Members",
@@ -63,5 +78,10 @@ func (h *Handler) GetMemberDetailHandler(ctx *fiber.Ctx) error {
 	if err != nil {
 		return ctx.Status(404).SendString(err.Error())
 	}
-	return ctx.JSON(member)
+	return ctx.JSON(dto.MemberResponseDTO{
+		Id:       member.Id,
+		Name:     member.Name,
+		SubTitle: member.SubTitle,
+		PhotoURL: member.PhotoURL,
+	})
 }

@@ -6,22 +6,27 @@ import (
 	"errors"
 	"fmt"
 	"github.com/gofiber/fiber/v2/log"
+	"github.com/jmoiron/sqlx"
 	"io"
 	"net/http"
 )
 
 type Repository struct {
-	members []entity.MemberEntity
+	db *sqlx.DB
 }
 
 const liveURL = "https://www.showroom-live.com/api/live/streaming_url?room_id=%d"
 
-func NewRepository(members []entity.MemberEntity) *Repository {
-	return &Repository{members: members}
+func NewRepository(db *sqlx.DB) *Repository {
+	return &Repository{
+		db: db,
+	}
 }
 
-func (r *Repository) GetMembers() []entity.MemberEntity {
-	return r.members
+func (r *Repository) GetMembers() ([]entity.MemberEntity, error) {
+	members := make([]entity.MemberEntity, 0)
+	err := r.db.Select(&members, "SELECT * from members order by name asc LIMIT 100")
+	return members, err
 }
 
 func (r *Repository) GetMemberLiveStreamURL(roomId int64) (string, error) {
@@ -66,10 +71,7 @@ func (r *Repository) GetMemberLiveStreamURL(roomId int64) (string, error) {
 }
 
 func (r *Repository) GetMemberDetail(roomId int64) (*entity.MemberEntity, error) {
-	for _, member := range r.members {
-		if member.Id == roomId {
-			return &member, nil
-		}
-	}
-	return nil, errors.New("member is not available at the moment")
+	member := &entity.MemberEntity{}
+	err := r.db.Get(member, "SELECT * FROM members where id = $1 order by name asc limit 1", roomId)
+	return member, err
 }
