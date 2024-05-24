@@ -16,6 +16,7 @@ func NewUserInterface() *UserInterface {
 
 func (ui *UserInterface) CreateMemberListChildInterface(members []entity.MemberEntity) []components.Component {
 	compos := make([]components.Component, 0)
+	var gray = "#808080"
 	for _, member := range members {
 		compos = append(compos, components.Component{
 			Type: components.BUTTON_TYPE,
@@ -32,7 +33,7 @@ func (ui *UserInterface) CreateMemberListChildInterface(members []entity.MemberE
 								Information: components.CircularImageComponentInfo{
 									Uid:      uuid.NewString(),
 									ImageURL: member.PhotoURL,
-									Size:     80,
+									Size:     40,
 								},
 							}, {
 								Type: components.STACK_TYPE,
@@ -51,9 +52,10 @@ func (ui *UserInterface) CreateMemberListChildInterface(members []entity.MemberE
 										{
 											Type: components.TEXT_TYPE,
 											Information: components.TextComponentInfo{
-												Uid:     uuid.NewString(),
-												Message: member.SubTitle,
-												Size:    8,
+												Uid:      uuid.NewString(),
+												Message:  member.SubTitle,
+												Size:     12,
+												ColorHex: &gray,
 											},
 										},
 										{

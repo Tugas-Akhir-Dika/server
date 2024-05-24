@@ -21,6 +21,7 @@ func (h *Handler) Register(sdui fiber.Router, base fiber.Router) {
 	base.Get("/member", h.GetMembersHandler)
 	base.Get("member/livestream/:id", h.GetMemberLiveStreamURL)
 	sdui.Get("/member", h.GetMembersUIHandler)
+	base.Get("/member/:id", h.GetMemberDetailHandler)
 }
 
 func (h *Handler) GetMemberLiveStreamURL(ctx *fiber.Ctx) error {
@@ -51,4 +52,16 @@ func (h *Handler) GetMembersUIHandler(ctx *fiber.Ctx) error {
 		Header: nil,
 		Body:   body,
 	})
+}
+
+func (h *Handler) GetMemberDetailHandler(ctx *fiber.Ctx) error {
+	roomid, err := ctx.ParamsInt("id")
+	if err != nil {
+		return ctx.Status(500).SendString(err.Error())
+	}
+	member, err := h.repo.GetMemberDetail(int64(roomid))
+	if err != nil {
+		return ctx.Status(404).SendString(err.Error())
+	}
+	return ctx.JSON(member)
 }
