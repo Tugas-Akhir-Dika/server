@@ -240,7 +240,7 @@ func (ui *UserInterface) CreateHeader(isAuth bool) []components.Component {
 					Type: components.TEXT_TYPE,
 					Information: components.TextComponentInfo{
 						Uid:     uuid.NewString(),
-						Message: "Login",
+						Message: "Sign In",
 						Size:    15,
 					},
 				},
