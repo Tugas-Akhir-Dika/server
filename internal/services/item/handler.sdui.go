@@ -66,7 +66,7 @@ func (h *Handler) GetItemDetailInterfaceHandler(ctx *fiber.Ctx) error {
 				Information: components.TextComponentInfo{
 					Uid:      uuid.NewString(),
 					Message:  "More",
-					Size:     40,
+					Size:     20,
 					Alpha:    nil,
 					ColorHex: nil,
 				},
