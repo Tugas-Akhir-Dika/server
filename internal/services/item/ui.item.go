@@ -92,8 +92,8 @@ func (ui *UserInterface) CreateItemListChildInterface(items []entity.ItemEntity)
 
 func (ui *UserInterface) CreateItemDetailInterface(item entity.ItemEntity) []components.Component {
 	spl := 3.0
-	splTwo := 40.0
-	return []components.Component{
+	splTwo := 10.0
+	compo := []components.Component{
 		{
 			Type: components.SPACER_TYPE,
 			Information: components.SpacerComponentInfo{
@@ -136,6 +136,14 @@ func (ui *UserInterface) CreateItemDetailInterface(item entity.ItemEntity) []com
 						},
 					},
 					{
+						Type: components.TEXT_TYPE,
+						Information: components.TextComponentInfo{
+							Uid:     uuid.NewString(),
+							Message: fmt.Sprintf("$%.2f", item.Price),
+							Size:    20,
+						},
+					},
+					{
 						Type: components.SPACER_TYPE,
 						Information: components.SpacerComponentInfo{
 							Uid:    uuid.NewString(),
@@ -156,6 +164,7 @@ func (ui *UserInterface) CreateItemDetailInterface(item entity.ItemEntity) []com
 			},
 		},
 	}
+	return compo
 }
 
 func (ui *UserInterface) CreateNotFoundInterface() []components.Component {
@@ -198,7 +207,7 @@ func (ui *UserInterface) CreateHeader(isAuth bool) []components.Component {
 						Type: components.CIRCULAR_IMG_TYPE,
 						Information: components.CircularImageComponentInfo{
 							Uid:      uuid.NewString(),
-							ImageURL: "https://t4.ftcdn.net/jpg/04/00/24/31/360_F_400243185_BOxON3h9avMUX10RsDkt3pJ8iQx72kS3.jpg",
+							ImageURL: "https://pbs.twimg.com/media/GGyPlsyW0AAhnbH?format=jpg",
 							Size:     34,
 						},
 					},
@@ -225,18 +234,33 @@ func (ui *UserInterface) CreateHeader(isAuth bool) []components.Component {
 		{
 			Type: components.BUTTON_TYPE,
 			Information: components.ButtonComponentInfo{
-				Uid:     components.OPEN_PROFILE_BTN,
-				IsClear: true,
+				Uid: components.OPEN_PROFILE_BTN,
 				Child: components.Component{
-					Type: components.CIRCULAR_IMG_TYPE,
-					Information: components.CircularImageComponentInfo{
-						Uid:      uuid.NewString(),
-						ImageURL: "https://pbs.twimg.com/media/GGyPlsyW0AAhnbH?format=jpg",
-						Size:     34,
+					Type: components.TEXT_TYPE,
+					Information: components.TextComponentInfo{
+						Uid:     uuid.NewString(),
+						Message: "Login",
+						Size:    15,
 					},
 				},
+				IsClear: true,
 			},
 		},
+		//{
+		//	Type: components.BUTTON_TYPE,
+		//	Information: components.ButtonComponentInfo{
+		//		Uid:     components.OPEN_PROFILE_BTN,
+		//		IsClear: true,
+		//		Child: components.Component{
+		//			Type: components.CIRCULAR_IMG_TYPE,
+		//			Information: components.CircularImageComponentInfo{
+		//				Uid:      uuid.NewString(),
+		//				ImageURL: "https://t4.ftcdn.net/jpg/04/00/24/31/360_F_400243185_BOxON3h9avMUX10RsDkt3pJ8iQx72kS3.jpg",
+		//				Size:     34,
+		//			},
+		//		},
+		//	},
+		//},
 	}
 }
 

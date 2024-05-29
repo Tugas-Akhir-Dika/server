@@ -33,7 +33,7 @@ func (ui *UserInterface) CreateMemberListChildInterface(members []entity.MemberE
 								Information: components.CircularImageComponentInfo{
 									Uid:      uuid.NewString(),
 									ImageURL: member.PhotoURL,
-									Size:     40,
+									Size:     53,
 								},
 							}, {
 								Type: components.STACK_TYPE,

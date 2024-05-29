@@ -5,6 +5,7 @@ import (
 	"SDUI_Server/internal/model/components"
 	"SDUI_Server/internal/model/dto"
 	"github.com/gofiber/fiber/v2"
+	"github.com/google/uuid"
 )
 
 func (h *Handler) GetListOfItemInterfaceHandler(ctx *fiber.Ctx) error {
@@ -49,6 +50,30 @@ func (h *Handler) GetItemDetailInterfaceHandler(ctx *fiber.Ctx) error {
 	isAuth := internal.IsAuth(ctx)
 	header := h.ui.CreateHeader(isAuth)
 	body := h.ui.CreateItemDetailInterface(*item)
+	if isAuth {
+		spacer := 30.00
+		nt, _ := h.repo.GetItems(ctx.Context(), 1, 5)
+		body = append(body,
+			components.Component{
+				Type: components.SPACER_TYPE,
+				Information: components.SpacerComponentInfo{
+					Uid:    uuid.NewString(),
+					Length: &spacer,
+				},
+			},
+			components.Component{
+				Type: components.TEXT_TYPE,
+				Information: components.TextComponentInfo{
+					Uid:      uuid.NewString(),
+					Message:  "More",
+					Size:     40,
+					Alpha:    nil,
+					ColorHex: nil,
+				},
+			},
+		)
+		body = append(body, h.ui.CreateSuggestionCarouselInterface(nt)...)
+	}
 	return ctx.JSON(dto.SDUIResponseDTO{
 		Title:  item.Title,
 		Header: header,
