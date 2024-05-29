@@ -25,7 +25,7 @@ func NewRepository(db *sqlx.DB) *Repository {
 
 func (r *Repository) GetMembers() ([]entity.MemberEntity, error) {
 	members := make([]entity.MemberEntity, 0)
-	err := r.db.Select(&members, "SELECT * from members order by name asc LIMIT 100")
+	err := r.db.Select(&members, "SELECT id, name, sub_title, photo_url, born_date, horoscope, height, jiko from members order by name asc LIMIT 100")
 	return members, err
 }
 
@@ -72,6 +72,6 @@ func (r *Repository) GetMemberLiveStreamURL(roomId int64) (string, error) {
 
 func (r *Repository) GetMemberDetail(roomId int64) (*entity.MemberEntity, error) {
 	member := &entity.MemberEntity{}
-	err := r.db.Get(member, "SELECT * FROM members where id = $1 order by name asc limit 1", roomId)
+	err := r.db.Get(member, "SELECT id, name, sub_title, photo_url, born_date, horoscope, height, jiko FROM members where id = $1 order by name asc limit 1", roomId)
 	return member, err
 }
