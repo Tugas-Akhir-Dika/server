@@ -92,6 +92,7 @@ func (ui *UserInterface) CreateItemListChildInterface(items []entity.ItemEntity)
 
 func (ui *UserInterface) CreateItemDetailInterface(item entity.ItemEntity) []components.Component {
 	spl := 3.0
+	var gray = "#808080"
 	splTwo := 10.0
 	compo := []components.Component{
 		{
@@ -132,7 +133,7 @@ func (ui *UserInterface) CreateItemDetailInterface(item entity.ItemEntity) []com
 							Message:  item.Category,
 							Size:     10,
 							Alpha:    nil,
-							ColorHex: nil,
+							ColorHex: &gray,
 						},
 					},
 					{
@@ -239,7 +240,7 @@ func (ui *UserInterface) CreateHeader(isAuth bool) []components.Component {
 					Type: components.TEXT_TYPE,
 					Information: components.TextComponentInfo{
 						Uid:     uuid.NewString(),
-						Message: "Login",
+						Message: "Sign In",
 						Size:    15,
 					},
 				},
