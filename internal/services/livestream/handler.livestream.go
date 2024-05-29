@@ -47,10 +47,14 @@ func (h *Handler) GetMembersHandler(ctx *fiber.Ctx) error {
 	res := make([]dto.MemberResponseDTO, 0)
 	for _, mem := range members {
 		res = append(res, dto.MemberResponseDTO{
-			Id:       mem.Id,
-			Name:     mem.Name,
-			SubTitle: mem.SubTitle,
-			PhotoURL: mem.PhotoURL,
+			Id:        mem.Id,
+			Name:      mem.Name,
+			SubTitle:  mem.SubTitle,
+			PhotoURL:  mem.PhotoURL,
+			BornDate:  mem.BornDate.Time.Format("02 January 2006"),
+			Horoscope: mem.Horoscope,
+			Height:    mem.Height,
+			Jiko:      mem.Jiko,
 		})
 	}
 	return ctx.JSON(res)
@@ -79,9 +83,13 @@ func (h *Handler) GetMemberDetailHandler(ctx *fiber.Ctx) error {
 		return ctx.Status(404).SendString(err.Error())
 	}
 	return ctx.JSON(dto.MemberResponseDTO{
-		Id:       member.Id,
-		Name:     member.Name,
-		SubTitle: member.SubTitle,
-		PhotoURL: member.PhotoURL,
+		Id:        member.Id,
+		Name:      member.Name,
+		SubTitle:  member.SubTitle,
+		PhotoURL:  member.PhotoURL,
+		BornDate:  member.BornDate.Time.Format("02 January 2006"),
+		Horoscope: member.Horoscope,
+		Height:    member.Height,
+		Jiko:      member.Jiko,
 	})
 }

@@ -19,5 +19,10 @@ CREATE TABLE IF NOT EXISTS members (
   id SERIAL PRIMARY KEY,
   name TEXT NOT NULL,
   sub_title TEXT NOT NULL default 'JKT48 member',
-  photo_url TEXT not null
+  photo_url TEXT not null,
+  born_date DATE not null default now(),
+  horoscope TEXT not null default '',
+  height int not null default 0,
+  full_name TEXT not null default '',
+  jiko TEXT not null default ''
 );
