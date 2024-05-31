@@ -278,7 +278,7 @@ func (ui *UserInterface) CreateSuggestionCarouselInterface(items []entity.ItemEn
 	carousel := components.Component{
 		Type: components.CAROUSEL_TYPE,
 		Information: components.CarouselComponentInfo{
-			Uid:        "",
+			Uid:        uuid.NewString(),
 			Properties: props,
 		},
 	}

@@ -84,3 +84,24 @@ func (ui *UserInterface) CreateMemberListChildInterface(members []entity.MemberE
 	}
 	return compos
 }
+
+func (ui *UserInterface) AlternateCreateMemberListChildInterface(members []entity.MemberEntity) []components.Component {
+	compos := make([]components.Component, 0)
+	props := make([]components.CarouselProperties, 0)
+	for _, item := range members {
+		props = append(props, components.CarouselProperties{
+			Title:    item.Name,
+			Image:    item.PhotoURL,
+			SubTitle: item.Horoscope,
+		})
+	}
+	carousel := components.Component{
+		Type: components.CAROUSEL_TYPE,
+		Information: components.CarouselComponentInfo{
+			Uid:        uuid.NewString(),
+			Properties: props,
+		},
+	}
+	compos = append(compos, carousel)
+	return compos
+}

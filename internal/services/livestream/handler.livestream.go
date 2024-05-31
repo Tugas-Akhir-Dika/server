@@ -65,7 +65,7 @@ func (h *Handler) GetMembersUIHandler(ctx *fiber.Ctx) error {
 	if err != nil {
 		return ctx.Status(500).SendString(err.Error())
 	}
-	body := h.ui.CreateMemberListChildInterface(members)
+	body := h.ui.AlternateCreateMemberListChildInterface(members)
 	return ctx.JSON(dto.SDUIResponseDTO{
 		Title:  "Oshi",
 		Header: nil,
