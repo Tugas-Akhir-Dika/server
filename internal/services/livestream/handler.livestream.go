@@ -67,7 +67,7 @@ func (h *Handler) GetMembersUIHandler(ctx *fiber.Ctx) error {
 	}
 	body := h.ui.CreateMemberListChildInterface(members)
 	return ctx.JSON(dto.SDUIResponseDTO{
-		Title:  "Members",
+		Title:  "Oshi",
 		Header: nil,
 		Body:   body,
 	})
