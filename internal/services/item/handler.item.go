@@ -1,8 +1,10 @@
 package item
 
 import (
+	"SDUI_Server/internal"
 	"SDUI_Server/internal/model/dto"
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/log"
 )
 
 type Handler struct {
@@ -57,6 +59,29 @@ func (h *Handler) GetItemDetailHandler(c *fiber.Ctx) error {
 	if err != nil {
 		return c.Status(404).SendString("cannot find item")
 	}
+	isAuth := internal.IsAuth(c)
+	recom := make([]dto.ItemDTO, 0)
+	if isAuth {
+		items, err := h.repo.GetItems(c.Context(), 1, 10)
+		if err != nil {
+			log.Error(err)
+		}
+		for _, it := range items {
+			recom = append(recom, dto.ItemDTO{
+				Id:          it.Id,
+				Title:       it.Title,
+				Price:       it.Price,
+				Description: it.Description,
+				Category:    it.Category,
+				Image:       it.Image,
+				Rating: dto.RatingDTO{
+					Rate:  item.Rate,
+					Count: item.Count,
+				},
+				Recom: nil,
+			})
+		}
+	}
 	return c.JSON(dto.ItemDTO{
 		Id:          item.Id,
 		Title:       item.Title,
@@ -68,5 +93,6 @@ func (h *Handler) GetItemDetailHandler(c *fiber.Ctx) error {
 			Rate:  item.Rate,
 			Count: item.Count,
 		},
+		Recom: recom,
 	})
 }

@@ -8,6 +8,7 @@ type ItemDTO struct {
 	Category    string    `json:"category"`
 	Image       string    `json:"image"`
 	Rating      RatingDTO `json:"rating"`
+	Recom       []ItemDTO `json:"recom"`
 }
 
 type RatingDTO struct {
